@@ -1,0 +1,12 @@
+image: jrbeverly/rsvg:baseimage
+
+convert:
+  stage: build
+  script:
+    - sh build/build.sh
+  only:
+    - master
+  artifacts:
+    paths:
+      - output/*
+    expire_in: 4 weeks
