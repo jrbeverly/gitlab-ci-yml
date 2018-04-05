@@ -1,0 +1,52 @@
+# ---------------------------------------
+# Global
+# ---------------------------------------
+
+stages:
+  - build
+  - package
+  - deploy
+
+# ----------------------------------------
+# Build
+# ----------------------------------------
+
+build:
+  stage: build
+  image: jrbeverly/minify:baseimage
+  script:
+    - sh build/build.sh
+  only: 
+    - master
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 hour
+
+# ----------------------------------------
+# Package
+# ----------------------------------------
+
+package:
+  stage: package
+  image: alpine:latest
+  script:
+    - echo 'No action needed.'
+  only: 
+    - master
+  artifacts:
+    paths:
+      - public
+    expire_in: 4 weeks
+
+# ----------------------------------------
+# Deploy
+# ----------------------------------------
+
+deploy:
+  stage: deploy
+  image: appropriate/curl:latest
+  script:
+    - "curl -X POST -F token=$DEPLOY_TOKEN -F ref=master https://gitlab.com/api/v4/projects/2209405/trigger/pipeline"
+  only: 
+    - master

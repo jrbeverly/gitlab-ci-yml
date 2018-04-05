@@ -1,0 +1,7 @@
+build:
+  image: jrbeverly/xwindow:baseimage
+  script:
+    - g++ myxapp.cpp -o xapp
+  artifacts:
+    paths:
+      - xapp

@@ -1,0 +1,63 @@
+# Relevant CI Variables
+#  ARTIFACT_URL: "https://gitlab.com/..."
+
+# ---------------------------------------
+# Global
+# ---------------------------------------
+
+stages:
+  - prepare
+  - build
+  - deploy
+
+# ----------------------------------------
+# Prepare
+# ----------------------------------------
+
+prepare:
+    image: appropriate/curl
+    stage: prepare
+    script:
+        - sh build/pull.sh
+        - chmod -R 777 target/ 
+    only:
+        - triggers
+        - master
+    artifacts:
+        paths:
+            - target
+        expire_in: 2 hours
+
+# ----------------------------------------
+# Build
+# ----------------------------------------
+
+build:
+    image: jrbeverly/pdf2htmlex:baseimage
+    stage: build
+    script:
+        - sh build/build.sh
+    only:
+        - triggers
+        - master
+    artifacts:
+        paths:
+            - public
+        expire_in: 2 hours
+
+# ----------------------------------------
+# Deploy
+# ----------------------------------------
+
+pages:
+    image: alpine:latest
+    stage: deploy
+    script:
+     - "echo 'Publishing artifacts'"
+    only:
+        - triggers
+        - master
+    artifacts:
+        paths:
+            - public
+        expire_in: 2 hours

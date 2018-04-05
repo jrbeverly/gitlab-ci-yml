@@ -1,0 +1,12 @@
+test-integration:
+  stage: "Integration Tests"
+  image: jrbeverly/bats:baseimage
+  script:
+    - sh .docker/provision.sh
+    - sh tests/integration/run.sh
+  dependencies:
+    - build
+  only:
+    - web
+    - develop
+    - master
