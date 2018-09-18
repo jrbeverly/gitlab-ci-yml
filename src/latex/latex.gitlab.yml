@@ -1,0 +1,14 @@
+stages:
+  - build
+
+compile_pdf:
+  image: jrbeverly/latex:full
+  stage: build
+  script:
+    - latexmk -pdf manual.tex
+  only:
+    - master
+  artifacts:
+    paths:
+      - manual.pdf
+    expire_in: 4 weeks
