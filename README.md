@@ -1,6 +1,27 @@
-## Gitlab-CI.yml
+# gitlab-ci.yml
 
 A collection of GitLab CI configuration files that are used by my projects. Stored here as the process of docker projects are polished and standardized.
+
+## Getting Started
+
+Each of the dockerfiles is presented with a simple `.gitlab-ci.yml` file that uses one of my docker images. The resources referenced by the definition are not included in this project. You can start by copying the `.gitlab-cy.yml`, then replacing the relevant bits.
+
+```yaml
+stages:
+  - build
+
+build:
+  stage: build
+  image: jrbeverly/minify:baseimage
+  script:
+    - minify -o index-min.html index.html
+  only:
+    - master
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 hour
+```
 
 ## Acknowledgements
 
