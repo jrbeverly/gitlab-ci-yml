@@ -1,9 +1,13 @@
 image: jrbeverly/rsvg:baseimage
 
+stages:
+  - build
+  
 convert:
   stage: build
   script:
-    - sh build/build.sh
+    - rsvg-convert -h 200 -f svg "icon.svg" > "out/icon.svg"
+    - rsvg-convert -h 200 -f png "icon.svg" > "out/icon.png"
   only:
     - master
   artifacts:
