@@ -1,9 +1,11 @@
+stages:
+  - "Integration Tests"
+
 test-integration:
   stage: "Integration Tests"
   image: jrbeverly/bats:baseimage
   script:
-    - sh .docker/provision.sh
-    - sh tests/integration/run.sh
+    - "shellcheck --shell=sh script.sh && echo Passed: $hookname/$scriptname"
   dependencies:
     - build
   only:
