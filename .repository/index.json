@@ -1,0 +1,20 @@
+{
+  "slug": "gitlab-ci-yml",
+  "namespace": "jrbeverly",
+  "status": "archived",
+  "icon": "icon.svg",
+  "license": {
+    "type": "MIT",
+    "content": "Jonathan Beverly <jrbeverly>"
+  },
+  "topics": [
+    "gitlab-ci",
+    "gitlab",
+    "docker",
+    "ci",
+    "ci-cd",
+    "templates",
+    "samples"
+  ],
+  "languages": []
+}
