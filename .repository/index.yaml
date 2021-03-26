@@ -1,0 +1,20 @@
+slug: gitlab-ci-yml
+description: A collection of GitLab CI configuration files that are used by my projects.
+project: workbench
+namespace:
+status: archived
+icon: icon.svg
+license:
+  type: MIT
+  content: Jonathan Beverly <jrbeverly>
+  year: 2017
+topics: |-
+  [
+    "gitlab-ci",
+    "gitlab",
+    "docker",
+    "ci",
+    "ci-cd",
+    "templates",
+    "samples"
+  ]
